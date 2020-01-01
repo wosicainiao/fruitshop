@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+#spring:
+#  thymeleaf:
+#    cache: false
+#    encoding: UTF-8
+#    check-template-location: true
+#    mode: HTML5
+#    prefix: /
+#    suffix: .html
+#    servlet:
+#      content-type: text/html
+
+##thymeleaf页面模板配置
+#spring:
+#  mvc:
+#    view:
+#      prefix: /
+#      suffix: .html
