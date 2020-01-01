@@ -23,8 +23,8 @@
 			<div class="am-container header">
 				<ul class="message-l">
 					<div class="topMessage">
-						<div class="menu-hd">
-							<a href="#" target="_top" class="h">亲，请登录</a>
+						<div class="menu-hd" style="cursor: pointer">
+							<a onclick="jumpToLogin()" target="_top" class="h">亲，请登录</a>
 							<a href="#" target="_top">免费注册</a>
 						</div>
 					</div>
@@ -2707,6 +2707,12 @@
 		<!--</script>-->
         <script type="text/javascript" th:src="@{basic/js/jquery.min.js}"></script>
 		<script type="text/javascript" th:src="@{/basic/js/quick_links.js} "></script>
+    <script>
+        //跳转到登录页面
+        function jumpToLogin() {
+            window.location.href="/fruitshop/user/login";
+        }
+    </script>
 	</body>
 
 </html>
