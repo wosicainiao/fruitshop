@@ -1,0 +1,25 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.wc.project.fruitshop.entity.User">
+    <resultMap id="BaseResultMap" type="com.wc.project.fruitshop.entity.User">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="String" property="username"/>
+        <result column="password" jdbcType="String" property="password"/>
+        <result column="gender" jdbcType="Byte" property="gender"/>
+        <result column="birthday" jdbcType="Data" property="birthday"/>
+        <result column="mobile" jdbcType="String" property="mobile"/>
+        <result column="nickname" jdbcType="String" property="nickname"/>
+        <result column="avatar" jdbcType="String" property="avatar"/>
+    </resultMap>
+
+    <select id="selectAll" resultType="com.wc.project.fruitshop.entity.User">
+        SELECT
+            *
+        FROM
+            shop_user
+        WHERE
+            id = #{id}
+    </select>
+</mapper>

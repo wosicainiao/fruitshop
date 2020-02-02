@@ -34,6 +34,6 @@ public class UserController {
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)){
             return ResponseUtil.fail(-1,"用户名或密码不能为空!");
         }
-        return null;
+        return ResponseUtil.success();
     }
 }
