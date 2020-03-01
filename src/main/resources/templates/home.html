@@ -2705,14 +2705,9 @@
 		<!--<script>-->
 			<!--window.jQuery || document.write('<script th:src="basic/js/jquery.min.js "><\/script>');-->
 		<!--</script>-->
-        <script type="text/javascript" th:src="@{basic/js/jquery.min.js}"></script>
+        <script type="text/javascript" th:src="@{/basic/js/jquery.min.js}"></script>
 		<script type="text/javascript" th:src="@{/basic/js/quick_links.js} "></script>
-    <script>
-        //跳转到登录页面
-        function jumpToLogin() {
-            window.location.href="/fruitshop/user/login";
-        }
-    </script>
+		<script type="text/javascript" th:src="@{/js/home.js}"></script>
 	</body>
 
 </html>

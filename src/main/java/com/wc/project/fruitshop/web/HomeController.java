@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Validated
 public class HomeController {
 
-    @GetMapping("/home")
+    @GetMapping("/index")
     public String home(){
         return "home";
     }

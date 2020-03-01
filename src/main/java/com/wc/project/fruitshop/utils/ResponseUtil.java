@@ -77,4 +77,10 @@ public class ResponseUtil {
     public static Object incorrectParam(){
         return fail(401,"参数不正确!");
     }
+    public static Object emptyParam(){
+        return fail(101,"用户名或密码不能为空!");
+    }
+    public static Object userNotExist(){
+        return fail(102,"用户不存在!");
+    }
 }

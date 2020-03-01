@@ -24,15 +24,18 @@
 				<div class="login-box">
 					<h3 class="title">登录商城</h3>
 					<div class="clear"></div>
+					<div  class="form-group">
+						<div align="center" id="errorMassage" class="alert alert-danger" style="color: #e4393c;"></div>
+					</div>
 					<div class="login-form">
-					  <form>
+					  <form id="form_pwd" name="form_pwd" onsubmit="return false">
 						  <div class="user-name">
-							<label for="user"><i class="am-icon-user"></i></label>
-							<input type="text" name="" id="user" placeholder="邮箱/手机/用户名">
+							<label for="username"><i class="am-icon-user"></i></label>
+							<input type="text" name="username" id="username" placeholder="邮箱/手机/用户名">
 						  </div>
 						  <div class="user-pass">
 								<label for="password"><i class="am-icon-lock"></i></label>
-								<input type="password" name="" id="password" placeholder="请输入密码">
+								<input type="password" name="password" id="password" placeholder="请输入密码">
 						  </div>
 					  </form>
            			</div>
@@ -45,7 +48,7 @@
 					</div>
 
 					<div class="am-cf">
-						<input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm">
+						<input type="submit" name="login" onclick="accountLogin()" value="登 录" class="am-btn am-btn-primary am-btn-sm">
 					</div>
 					<div class="partner">
 							<h3>合作账号</h3>
@@ -81,5 +84,9 @@
 				</p>
 			</div>
 		</div>
+
+
+		<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+		<script type="text/javascript" th:src="@{/js/login.js}"></script>
 	</body>
 </html>
