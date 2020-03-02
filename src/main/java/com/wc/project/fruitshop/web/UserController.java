@@ -1,6 +1,6 @@
 package com.wc.project.fruitshop.web;
 
-import com.wc.project.fruitshop.entity.User;
+import com.wc.project.fruitshop.entity.ShopUser;
 import com.wc.project.fruitshop.service.UserService;
 import com.wc.project.fruitshop.utils.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +42,12 @@ public class UserController {
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)){
             return ResponseUtil.emptyParam();
         }
-        User user = new User();
-        user.setUsername(username);
-        List<User> users = userService.selectUserInfo(user);
-        if (users == null || users.size() == 0){
+        ShopUser shopUser = new ShopUser();
+        shopUser.setUsername(username);
+        List<ShopUser> shopUsers = userService.selectUserInfo(shopUser);
+        if (shopUsers == null || shopUsers.size() == 0){
             return ResponseUtil.userNotExist();
         }
-        return ResponseUtil.success(users.get(0));
+        return ResponseUtil.success(shopUsers.get(0));
     }
 }

@@ -1,6 +1,6 @@
 package com.wc.project.fruitshop.mapper;
 
-import com.wc.project.fruitshop.entity.User;
+import com.wc.project.fruitshop.entity.ShopUser;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
@@ -8,5 +8,5 @@ import tk.mybatis.mapper.common.Mapper;
  * @Description TODO
  * @create 2020/2/18 14:28
  */
-public interface UserMapper extends Mapper<User> {
+public interface ShopUserMapper extends Mapper<ShopUser> {
 }

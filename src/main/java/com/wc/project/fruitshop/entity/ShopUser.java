@@ -10,7 +10,7 @@ import java.util.Date;
  * @create 2020/1/22 20:19
  */
 @Data
-public class User {
+public class ShopUser {
     private Integer id;
     private String username;
     private String password;

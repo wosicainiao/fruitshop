@@ -1,7 +1,7 @@
 package com.wc.project.fruitshop.service;
 
-import com.wc.project.fruitshop.entity.User;
-import com.wc.project.fruitshop.mapper.UserMapper;
+import com.wc.project.fruitshop.entity.ShopUser;
+import com.wc.project.fruitshop.mapper.ShopUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +16,14 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private UserMapper userMapper;
+    private ShopUserMapper shopUserMapper;
 
     /**
      * 查询用户信息
-     * @param user
+     * @param shopUser
      * @return
      */
-    public List<User> selectUserInfo(User user){
-        return userMapper.select(user);
+    public List<ShopUser> selectUserInfo(ShopUser shopUser){
+        return shopUserMapper.select(shopUser);
     }
 }
