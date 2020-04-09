@@ -11,6 +11,10 @@ function logout(){
     localStorage.clear();
     window.location.href="/fruitshop/home/index";
 }
+//跳转到购物车
+function shopcart(){
+    window.location.href="/fruitshop/cart/shopcart";
+}
 $(function () {
     var userInfo = JSON.parse(localStorage.getItem("userInfo"));
     // console.log("userInfo:",userInfo);
