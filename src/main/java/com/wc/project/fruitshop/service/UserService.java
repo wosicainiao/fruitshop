@@ -1,10 +1,11 @@
 package com.wc.project.fruitshop.service;
 
+import com.wc.project.fruitshop.core.AbstractService;
 import com.wc.project.fruitshop.entity.ShopUser;
 import com.wc.project.fruitshop.mapper.ShopUserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -13,9 +14,9 @@ import java.util.List;
  * @create 2020/3/1 23:47
  */
 @Service
-public class UserService {
+public class UserService  {
 
-    @Autowired
+    @Resource
     private ShopUserMapper shopUserMapper;
 
     /**
@@ -25,5 +26,16 @@ public class UserService {
      */
     public List<ShopUser> selectUserInfo(ShopUser shopUser){
         return shopUserMapper.select(shopUser);
+    }
+
+    /**
+     * 注册用户
+     * @param user
+     * @return
+     */
+    public int insertUser(ShopUser user){
+        user.setAvatar("https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4090061760,3566002114&fm=26&gp=0.jpg");
+        user.setNickname("新用户");
+        return shopUserMapper.insert(user);
     }
 }

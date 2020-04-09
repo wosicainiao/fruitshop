@@ -23,9 +23,9 @@
 			<div class="am-container header">
 				<ul class="message-l">
 					<div class="topMessage">
-						<div class="menu-hd" style="cursor: pointer">
-							<a onclick="jumpToLogin()" target="_top" class="h">亲，请登录</a>
-							<a href="#" target="_top">免费注册</a>
+						<div class="menu-hd" style="cursor: pointer" >
+							<a onclick="jumpToLogin()" target="_top" class="h" id="login">亲，请登录</a>
+							<a onclick="jumpToRegister()" target="_top" id="register">免费注册</a>
 						</div>
 					</div>
 				</ul>
@@ -2512,7 +2512,7 @@
 					<div class="footer ">
 						<div class="footer-hd ">
 							<p>
-								<a href="# ">恒望科技</a>
+								<a href="# ">科技</a>
 								<b>|</b>
 								<a href="# ">商城首页</a>
 								<b>|</b>
@@ -2523,7 +2523,7 @@
 						</div>
 						<div class="footer-bd ">
 							<p>
-								<a href="# ">关于恒望</a>
+								<a href="# ">关于作者</a>
 								<a href="# ">合作伙伴</a>
 								<a href="# ">联系我们</a>
 								<a href="# ">网站地图</a>
@@ -2553,10 +2553,10 @@
 						</a>
 						<div class="ibar_login_box status_login ">
 							<div class="avatar_box ">
-								<p class="avatar_imgbox "><img th:src="@{/images/no-img_mid_.jpg}" /></p>
-								<ul class="user_info ">
-									<li>用户名：sl1903</li>
-									<li>级&nbsp;别：普通会员</li>
+								<p class="avatar_imgbox "><img id="avatar" th:src="@{/images/no-img_mid_.jpg}" /></p>
+								<ul class="user_info " style="text-align: left">
+									<li id="name">未登录</li>
+									<li id="level">级&nbsp;别：普通会员</li>
 								</ul>
 							</div>
 							<div class="login_btnbox ">

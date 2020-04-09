@@ -83,4 +83,11 @@ public class ResponseUtil {
     public static Object userNotExist(){
         return fail(102,"用户不存在!");
     }
+    public static Object errorPassword(){
+        return fail(103,"密码错误!");
+    }
+
+    public static Object userIsExist(){
+        return fail(104,"用户已存在!");
+    }
 }
