@@ -15,6 +15,10 @@ function logout(){
 function shopcart(){
     window.location.href="/fruitshop/cart/shopcart";
 }
+//搜索
+function searchGoods(){
+    $("[name='searchGoods']").submit();
+}
 $(function () {
     var userInfo = JSON.parse(localStorage.getItem("userInfo"));
     // console.log("userInfo:",userInfo);

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wc.project.fruitshop.mapper.ShopGoodsMapper">
+    <resultMap id="BaseResultMap" type="com.wc.project.fruitshop.entity.ShopGoods">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="goods_sn" jdbcType="VARCHAR" property="goodsSn"/>
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+        <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="goods_picture" jdbcType="VARCHAR" property="goodsPicture"/>
+        <result column="goods_brief" jdbcType="VARCHAR" property="goodsBrief"/>
+        <result column="goods_num" jdbcType="INTEGER" property="goodsName"/>
+        <result column="goods_price" jdbcType="DECIMAL" property="goodsPrice"/>
+        <result column="create_time" jdbcType="DATE" property="createTime"/>
+        <result column="update_time" jdbcType="DATE" property="updateTime"/>
+        <result column="deleted" jdbcType="BIT" property="deleted"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, goods_sn, goods_name, category_id, goods_picture, goods_brief, goods_num, goods_price,  create_time, update_time,deleted
+    </sql>
+
+    <select id="selectGoodsByKeyword" resultMap="BaseResultMap">
+        SELECT
+          <include refid="Base_Column_List" />
+        FROM
+          shop_goods
+        WHERE
+          1=1
+        <if test="keyword != null">
+            AND goods_name LIKE concat('%',#{keyword},'%')
+        </if>
+        ORDER BY
+         create_time
+        DESC
+    </select>
+</mapper>

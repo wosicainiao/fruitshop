@@ -2,6 +2,7 @@ package com.wc.project.fruitshop.entity;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -19,4 +20,5 @@ public class ShopUser {
     private String mobile;
     private String nickname;
     private String avatar;
+    private LocalDateTime createTime;
 }

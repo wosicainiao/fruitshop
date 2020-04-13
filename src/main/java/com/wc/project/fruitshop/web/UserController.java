@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -88,6 +89,7 @@ public class UserController {
             return ResponseUtil.userIsExist();
         }else {
             shopUser.setPassword(passwordEmail);
+            shopUser.setCreateTime(LocalDateTime.now());
             int result = userService.insertUser(shopUser);
             if (result == 1){
                 return ResponseUtil.success();
