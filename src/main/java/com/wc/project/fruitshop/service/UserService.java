@@ -25,7 +25,7 @@ public class UserService  {
      * @return
      */
     public List<ShopUser> selectUserInfo(ShopUser shopUser){
-        return shopUserMapper.select(shopUser);
+        return shopUserMapper.selectUserById(shopUser.getId());
     }
 
     /**
@@ -36,6 +36,6 @@ public class UserService  {
     public int insertUser(ShopUser user){
         user.setAvatar("https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4090061760,3566002114&fm=26&gp=0.jpg");
         user.setNickname("新用户");
-        return shopUserMapper.insert(user);
+        return shopUserMapper.insertUser(user);
     }
 }
