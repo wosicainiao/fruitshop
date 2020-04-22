@@ -28,4 +28,8 @@ public class CartService {
         shopCart.setDeleted((byte) 0);
         return cartMapper.insertCart(shopCart);
     }
+
+    public int deleteCart(Integer cartId){
+        return cartMapper.deleteCart(cartId);
+    }
 }

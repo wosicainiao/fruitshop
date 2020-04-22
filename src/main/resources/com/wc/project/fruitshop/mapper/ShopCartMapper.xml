@@ -3,8 +3,8 @@
 <mapper namespace="com.wc.project.fruitshop.mapper.ShopCartMapper">
     <resultMap id="BaseResultMap" type="com.wc.project.fruitshop.entity.ShopCart">
         <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="user_id" jdbcType="INTEGER" property="id"/>
-        <result column="goods_id" jdbcType="INTEGER" property="userId"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="goods_id" jdbcType="INTEGER" property="goodsId"/>
         <result column="goods_sn" jdbcType="VARCHAR" property="goodsSn"/>
         <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
         <result column="product_id" jdbcType="INTEGER" property="productId"/>
@@ -27,9 +27,19 @@
         FROM
           shop_cart
         WHERE
+          deleted = 0
+        AND
           user_id = #{userId}
     </select>
 
+    <update id="deleteCart">
+        UPDATE
+          shop_cart
+        SET
+          deleted = 1
+        WHERE
+          id = #{cartId}
+    </update>
     <insert id="insertCart" parameterType="com.wc.project.fruitshop.entity.ShopCart">
         INSERT INTO
           shop_cart

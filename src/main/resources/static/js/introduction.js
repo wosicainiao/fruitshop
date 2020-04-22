@@ -3,8 +3,7 @@ userInfo = JSON.parse(userInfo);
 
 //进入购物车页面
 function toShopCart(){
-
-   window.location.href="/fruitshop/cart/shopcart?userId="+userInfo.id
+    window.location.href="/fruitshop/cart/shopcart?userId="+userInfo.id
 }
 
 $(function () {
@@ -24,8 +23,12 @@ $(function () {
                   async:false,
                   data: JSON.stringify(cart),
                   contentType: "application/json;charset=utf-8",
-                  success: function (data) {
-                      console.log("data::",data)
+                  success: function (res) {
+                      console.log('res',res)
+                      if (res.errorCode == 0){
+                          console.log('res',res)
+                          window.location.href="/fruitshop/cart/shopcart?userId="+userInfo.id
+                      }
                   }
               })
           }

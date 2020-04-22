@@ -16,4 +16,6 @@ public interface ShopCartMapper {
 
     List<ShopCart> selectCartByUserId(@Param("userId") Integer userId);
     int insertCart(ShopCart shopCart);
+
+    Integer deleteCart(@Param("cartId") Integer cartId);
 }

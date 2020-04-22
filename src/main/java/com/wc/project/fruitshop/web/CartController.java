@@ -1,5 +1,6 @@
 package com.wc.project.fruitshop.web;
 
+import com.wc.project.fruitshop.core.JacksonUtil;
 import com.wc.project.fruitshop.entity.ShopCart;
 import com.wc.project.fruitshop.entity.ShopGoods;
 import com.wc.project.fruitshop.service.CartService;
@@ -30,11 +31,23 @@ public class CartController {
      */
     @RequestMapping("/shopcart")
     public String shopcart(Integer userId, Model model){
+        double sumPrice = 0;
         List<ShopCart> shopCarts = cartService.selectCartByUserId(userId);
+        for(ShopCart shopCart: shopCarts){
+            sumPrice += (shopCart.getActivePrice().doubleValue())*shopCart.getNumber();
+        }
         model.addAttribute("shopCarts",shopCarts);
+        model.addAttribute("sumPrice",sumPrice);
         return "shopcart";
     }
 
+    /**
+     * 添加购物车
+     * @param model
+     * @param userId
+     * @param shopCart
+     * @return
+     */
     @PostMapping("/addCart")
     @ResponseBody
     public Object addToCart(Model model,Integer userId, @RequestBody ShopCart shopCart){
@@ -62,6 +75,23 @@ public class CartController {
         shopCart.setDeleted((byte) 0);
         int result = cartService.insertCart(shopCart);
         if(result != 1){
+            return ResponseUtil.fail();
+        }else {
+            return ResponseUtil.success();
+        }
+    }
+
+    /**
+     * 删除购物车数据
+     * @param body
+     * @return
+     */
+    @PostMapping("/deleteCart")
+    @ResponseBody
+    public Object deleteCart(@RequestBody String body){
+        Integer cartId = JacksonUtil.parseInteger(body, "cartId");
+        int result = cartService.deleteCart(cartId);
+        if(result != 0){
             return ResponseUtil.fail();
         }else {
             return ResponseUtil.success();
