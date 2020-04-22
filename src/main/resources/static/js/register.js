@@ -21,3 +21,8 @@ function register(){
 function jumpToLogin() {
     window.location.href="/fruitshop/user/login";
 }
+
+//跳转商城首页
+function RegisterToIndex() {
+    window.location.href="/fruitshop/home/index";
+}

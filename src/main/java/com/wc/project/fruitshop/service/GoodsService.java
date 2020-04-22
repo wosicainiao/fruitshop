@@ -23,4 +23,8 @@ public class GoodsService {
         PageHelper.startPage(page, limit);
         return goodsMapper.selectGoodsByKeyword(keyword);
     }
+
+    public ShopGoods selectGoodsById(Integer id){
+        return goodsMapper.selectGoodsById(id);
+    }
 }

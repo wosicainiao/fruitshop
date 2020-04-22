@@ -21,7 +21,6 @@ function searchGoods(){
 }
 $(function () {
     var userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    // console.log("userInfo:",userInfo);
     if (userInfo != null){
         $("#login").text('欢迎您!'+userInfo.nickname);
         $("#login").removeAttr('onclick');

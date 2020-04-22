@@ -6,7 +6,12 @@ function loadLogin() {
 
         $('#username').val(username);
     }
-};
+}
+//跳转商城首页
+function LoginToIndex() {
+    window.location.href="/fruitshop/home/index";
+}
+
 function accountLogin() {
     $.ajax({
         url:"/fruitshop/user/loginByPwd",

@@ -8,21 +8,22 @@ import java.time.LocalDateTime;
 /**
  * @Author 王超
  * @Description TODO
- * @create 2020/4/13 0:17
+ * @create 2020/4/20 22:06
  */
 @Data
-public class ShopGoods {
+public class ShopCart {
     private Integer id;
+    private Integer userId;
+    private Integer goodsId;
     private String goodsSn;
     private String goodsName;
-    private Integer categoryId;
-    private String goodsPicture;
-    private String goodsBrief;
-    private Integer goodsNum;
-    private BigDecimal goodsPrice;
+    private Integer productId;
+    private BigDecimal price;
     private BigDecimal activePrice;
-    private LocalDateTime createTime;
+    private Short number;
+    private Byte checked;
+    private String picUrl;
+    private LocalDateTime addTime;
     private LocalDateTime updateTime;
     private Byte deleted;
-    private Integer saleNumber;
 }

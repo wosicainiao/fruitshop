@@ -7,14 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Controller
-@RequestMapping("/fruitshop/home")
+@RequestMapping("/fruitshop/goods")
 @Validated
 public class GoodsController {
 
@@ -22,8 +24,7 @@ public class GoodsController {
     private GoodsService goodsService;
 
     @RequestMapping("/searchGoods")
-    @ResponseBody
-    public Object searchGoods(@RequestParam(value = "keyword",defaultValue = "苹果") String keyword,
+    public Object searchGoods(String keyword,
                               @RequestParam(defaultValue = "1") Integer page,
                               @RequestParam(defaultValue = "28") Integer limit,
                               Model model){
@@ -36,6 +37,19 @@ public class GoodsController {
         Integer pageSum = temp.intValue();
         model.addAttribute("pageSum",pageSum);
         model.addAttribute("page",page);
-        return "sort";
+        return "search";
+    }
+
+    /**
+     * 商品详情
+     * @param model
+     * @param id
+     * @return
+     */
+    @GetMapping("/detail")
+    public String detail(Model model,@NotNull Integer id){
+        ShopGoods goods = goodsService.selectGoodsById(id);
+        model.addAttribute("goods",goods);
+        return  "introduction";
     }
 }

@@ -19,4 +19,6 @@ public interface ShopGoodsMapper {
      * @return
      */
     List<ShopGoods> selectGoodsByKeyword(@Param("keyword") String keyword);
+
+    ShopGoods selectGoodsById(@Param("id") Integer id);
 }

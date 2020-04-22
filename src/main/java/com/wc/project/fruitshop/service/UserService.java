@@ -21,11 +21,11 @@ public class UserService  {
 
     /**
      * 查询用户信息
-     * @param shopUser
+     * @param username
      * @return
      */
-    public List<ShopUser> selectUserInfo(ShopUser shopUser){
-        return shopUserMapper.selectUserById(shopUser.getId());
+    public List<ShopUser> selectUserInfo(String username){
+        return shopUserMapper.selectUserByUsername(username);
     }
 
     /**

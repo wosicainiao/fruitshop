@@ -21,7 +21,7 @@
 <body>
 
 <div class="login-boxtitle">
-    <a href="home/demo.html"><img alt="" th:src="@{/images/logobig.png}"></a>
+    <a ><img alt="" th:src="@{/images/logobig.png}"><a onclick="jumpToLogin()" style="float: right;cursor: pointer"  class="am-fr login-wc am-btn-default">登录</a><a style="float: right;cursor: pointer" class="zcnext am-fr am-btn-default" onclick="RegisterToIndex()">商城首页</a></a>
 </div>
 
 <div class="res-banner">
@@ -60,7 +60,6 @@
                             <label for="reader-me">
                                 <input id="reader-me" type="checkbox"> 点击表示您同意商城《服务协议》
                             </label>
-                            <a onclick="jumpToLogin()" class=" am-fr am-btn-default">登录</a>
                         </div>
                         <div class="am-cf">
                             <input type="submit" name="" value="注册" onclick="register()"
@@ -111,8 +110,6 @@
     <div class="footer ">
         <div class="footer-hd ">
             <p>
-                <a href="# ">科技</a>
-                <b>|</b>
                 <a href="# ">商城首页</a>
                 <b>|</b>
                 <a href="# ">支付宝</a>
@@ -122,11 +119,9 @@
         </div>
         <div class="footer-bd ">
             <p>
-                <a href="# ">关于作者</a>
                 <a href="# ">合作伙伴</a>
                 <a href="# ">联系我们</a>
                 <a href="# ">网站地图</a>
-                <em>© 2015-2025 Hengwang.com 版权所有</em>
             </p>
         </div>
     </div>

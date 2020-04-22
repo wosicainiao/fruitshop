@@ -50,7 +50,7 @@ public class UserController {
         }
         ShopUser shopUser = new ShopUser();
         shopUser.setUsername(username);
-        List<ShopUser> shopUsers = userService.selectUserInfo(shopUser);
+        List<ShopUser> shopUsers = userService.selectUserInfo(username);
         if (shopUsers == null || shopUsers.size() == 0){
             return ResponseUtil.userNotExist();
         }
@@ -84,7 +84,7 @@ public class UserController {
         //查询用户是否已经存在
         ShopUser shopUser = new ShopUser();
         shopUser.setUsername(email);
-        List<ShopUser> shopUsers = userService.selectUserInfo(shopUser);
+        List<ShopUser> shopUsers = userService.selectUserInfo(shopUser.getUsername());
         if (shopUsers!=null && shopUsers.size()>0){
             return ResponseUtil.userIsExist();
         }else {
