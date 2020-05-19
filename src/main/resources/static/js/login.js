@@ -3,7 +3,6 @@ function loadLogin() {
     var username = localStorage.getItem("username");
     console.log("username",username)
     if (username != null && username != ""){
-
         $('#username').val(username);
     }
 }

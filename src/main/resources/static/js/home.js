@@ -1,3 +1,6 @@
+var userInfo = localStorage.getItem("userInfo");
+userInfo = JSON.parse(userInfo);
+
 //跳转到登录页面
 function jumpToLogin() {
     window.location.href="/fruitshop/user/login";
@@ -13,11 +16,15 @@ function logout(){
 }
 //跳转到购物车
 function shopcart(){
-    window.location.href="/fruitshop/cart/shopcart";
+    window.location.href="/fruitshop/cart/shopcart?userId="+userInfo.id;
 }
 //搜索
 function searchGoods(){
     $("[name='searchGoods']").submit();
+}
+//跳转商城首页
+function homeToIndex() {
+    window.location.href="/fruitshop/home/index";
 }
 $(function () {
     var userInfo = JSON.parse(localStorage.getItem("userInfo"));

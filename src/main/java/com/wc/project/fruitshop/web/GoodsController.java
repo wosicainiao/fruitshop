@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.constraints.NotNull;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/fruitshop/goods")
@@ -51,5 +53,24 @@ public class GoodsController {
         ShopGoods goods = goodsService.selectGoodsById(id);
         model.addAttribute("goods",goods);
         return  "introduction";
+    }
+
+    /**
+     * 查询货品库存
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/findProductStock")
+    @ResponseBody
+    public Object findProductStock(Integer id){
+        Map<String,Object> data = new HashMap<>();
+        ShopGoods product = goodsService.selectGoodsById(id);
+        if (product != null) {
+            data.put("result","success");
+            data.put("product",product);
+        } else {
+            data.put("result","failed");
+        }
+        return data;
     }
 }

@@ -97,4 +97,16 @@ public class CartController {
             return ResponseUtil.success();
         }
     }
+
+    /**
+     * 跳转结算
+     * @param userId
+     * @return
+     */
+    @RequestMapping("/toSettleAccount")
+    public Object toSettleAccount(Integer userId){
+
+        System.out.println("userId:"+userId);
+        return "pay";
+    }
 }
