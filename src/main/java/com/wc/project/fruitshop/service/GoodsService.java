@@ -27,4 +27,13 @@ public class GoodsService {
     public ShopGoods selectGoodsById(Integer id){
         return goodsMapper.selectGoodsById(id);
     }
+
+    public int insertGoods(ShopGoods shopGoods){
+        return goodsMapper.insertGoods(shopGoods);
+    }
+
+    public List<ShopGoods> selectAll(Integer page,Integer limit){
+        PageHelper.startPage(page,limit);
+        return goodsMapper.selectAll();
+    }
 }

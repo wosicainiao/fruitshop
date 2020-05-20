@@ -21,4 +21,8 @@ public interface ShopGoodsMapper {
     List<ShopGoods> selectGoodsByKeyword(@Param("keyword") String keyword);
 
     ShopGoods selectGoodsById(@Param("id") Integer id);
+
+    int insertGoods(ShopGoods shopGoods);
+
+    List<ShopGoods> selectAll();
 }

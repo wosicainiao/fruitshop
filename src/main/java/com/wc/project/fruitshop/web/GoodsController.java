@@ -1,6 +1,7 @@
 package com.wc.project.fruitshop.web;
 
 import com.github.pagehelper.PageInfo;
+import com.jte.cloud.platform.common.utils.ResultInfo;
 import com.wc.project.fruitshop.entity.ShopGoods;
 import com.wc.project.fruitshop.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +73,36 @@ public class GoodsController {
             data.put("result","failed");
         }
         return data;
+    }
+
+    /**
+     * 添加商品
+     * @param shopGoods
+     * @return
+     */
+    @RequestMapping(value = "/insertGoods")
+    @ResponseBody
+    public ResultInfo insertGoods(ShopGoods shopGoods){
+        return ResultInfo.success(goodsService.insertGoods(shopGoods));
+    }
+
+    /**
+     * 首页查询商品
+     * @param page
+     * @param limit
+     * @return
+     */
+    @RequestMapping("/selectAll")
+    public Object selectAll(@RequestParam(defaultValue = "1") Integer page,
+                                @RequestParam(defaultValue = "28") Integer limit,
+                                Model model){
+        List<ShopGoods> shopGoods = goodsService.selectAll(page, limit);
+        long total = PageInfo.of(shopGoods).getTotal();
+//        Map<String, Object> data = new HashMap<>();
+//        data.put("total", total);
+//        data.put("items", shopGoods);
+        model.addAttribute("total",total);
+        model.addAttribute("goodsList",shopGoods);
+        return "home";
     }
 }

@@ -1,6 +1,7 @@
 package com.wc.project.fruitshop.mapper;
 
 import com.wc.project.fruitshop.entity.ShopAddress;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-05-19 00:58:23
  */
+@Mapper
 public interface ShopAddressMapper {
 
     /**

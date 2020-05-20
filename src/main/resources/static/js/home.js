@@ -37,4 +37,19 @@ $(function () {
         $("#name").text('昵 称：'+userInfo.nickname);
         $("#avatar").attr('src',userInfo.avatar);
     }
+
+    $.ajax({
+        url:"/fruitshop/goods/selectAll",
+        type:'GET',
+        data:{
+            page:1,
+            limit:20
+        },
+        success: function (result) {
+            var total = $("[name='total']").text();
+            console.log('ok->',total)
+        }
+    })
+    var total = $("[name = 'total']").val();
+    console.log('蔬菜-》',total)
 });

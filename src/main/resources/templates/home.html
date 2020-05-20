@@ -1051,13 +1051,21 @@
 					}
 				</script>
 			</div>
+		<input  name="total" type="hidden" th:name="${total}" th:value="${total}" style="width:30px;"/>
+		<div th:each="goods:${goodsList}">
+			<div >
+				aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+			</div>
+			<ul class="item-content clearfix" >
+				<div>
+					aaaaaaaaaaaaaaaaaaaa
+				</div>
+			</ul>
+		</div>
 			<div class="shopMainbg">
 				<div class="shopMain" id="shopmain">
-
 					<!--热门活动 -->
-
 					<div class="am-container">
-					
                      <div class="sale-mt">
 		                   <i></i>
 		                   <em class="sale-title">限时秒杀</em>
@@ -1067,8 +1075,6 @@
 			                    <span class="ss">59</span>
 		                   </div>
 	                  </div>
-
-					
 					  <div class="am-g am-g-fixed sale">
 						<div class="am-u-sm-3 sale-item">
 							<div class="s-img">
@@ -1112,14 +1118,31 @@
 							</div>
                            <div class="s-info">
                            	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
+							   <a th:text="${total}"></a>
+							   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
                            	   <div class="s-price">￥<b>9.90</b>
                            	   	  <a class="s-buy" href="#">秒杀</a>
-                           	   </div>                          	  
+                           	   </div>
                            </div>								
 						</div>
 						
 					  </div>
                    </div>
+					<!--<input type="hidden" name="total" th:value="${total}"/>-->
+					<!--<div class="clear "></div>-->
+					<!--<div class="am-container" th:each="goods:${goodsList}">-->
+						<!--<div class="am-u-sm-3 sale-item">-->
+							<!--<div class="s-img">-->
+								<!--<a href="# "><img th:src="@{/images/sale2.jpg}" /></a>-->
+							<!--</div>-->
+							<!--<div class="s-info">-->
+								<!--<a th:text="${goods.goodsName}"></a>-->
+								<!--<div class="s-price">￥<b>9.90</b>-->
+									<!--<a class="s-buy" href="#">秒杀</a>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
 					<div class="clear "></div>
             <div class="f1">
 					<!--甜点-->

@@ -45,4 +45,20 @@
         WHERE
           id = #{id}
     </select>
+
+    <insert id="insertGoods" parameterType="com.wc.project.fruitshop.entity.ShopGoods">
+        insert into
+          shop_goods
+        (goods_name, category_id, goods_picture, goods_brief, goods_num, goods_price, create_time, update_time, deleted, goods_sn, sale_number, active_price)
+        values (#{goodsName}, #{categoryId}, #{goodsPicture}, #{goodsBrief}, #{goodsNum}, #{goodsPrice}, #{createTime}, #{updateTime}, #{deleted}, #{goodsSn}, #{saleNumber}, #{activePrice})
+    </insert>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+          <include refid="Base_Column_List" />
+        from
+          shop_goods
+        where
+          deleted = 0
+    </select>
 </mapper>
