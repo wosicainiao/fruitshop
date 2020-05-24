@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,13 +32,20 @@ public class CartController {
      */
     @RequestMapping("/shopcart")
     public String shopcart(Integer userId, Model model){
-        double sumPrice = 0;
+        double sumPrice = 0.00;
+        int checkedNum = 0;
         List<ShopCart> shopCarts = cartService.selectCartByUserId(userId);
         for(ShopCart shopCart: shopCarts){
-            sumPrice += (shopCart.getActivePrice().doubleValue())*shopCart.getNumber();
+            if (shopCart.getChecked() == 1){
+                sumPrice += (shopCart.getActivePrice().doubleValue())*shopCart.getNumber();
+                checkedNum ++;
+            }
         }
         model.addAttribute("shopCarts",shopCarts);
-        model.addAttribute("sumPrice",sumPrice);
+        BigDecimal temp = new BigDecimal(sumPrice);
+        temp = temp.setScale(2, BigDecimal.ROUND_HALF_UP);
+        model.addAttribute("sumPrice",temp);
+        model.addAttribute("checkedNum",checkedNum);
         return "shopcart";
     }
 
@@ -100,13 +108,48 @@ public class CartController {
 
     /**
      * 跳转结算
+     * 选中的购物车商品
      * @param userId
      * @return
      */
-    @RequestMapping("/toSettleAccount")
-    public Object toSettleAccount(Integer userId){
-
-        System.out.println("userId:"+userId);
+    @GetMapping("/toSettleAccount")
+    public Object selectCartsChecked(Integer userId,Model model){
+        List<ShopCart> shopCarts = cartService.selectCartsChecked(userId);
+        double sumPrice = 0.00;
+        for(ShopCart shopCart: shopCarts){
+            if (shopCart.getChecked() == 1){
+                sumPrice += (shopCart.getActivePrice().doubleValue())*shopCart.getNumber();
+            }
+        }
+        model.addAttribute("shopCarts",shopCarts);
+        BigDecimal temp = new BigDecimal(sumPrice);
+        temp = temp.setScale(2, BigDecimal.ROUND_HALF_UP);
+        model.addAttribute("sumPrice",temp);
         return "pay";
     }
+
+    /**
+     * 选中状态
+     * @param body
+     */
+    @PostMapping("/changeChecked")
+    @ResponseBody
+    public Object updateChecked(@RequestBody String body){
+        Integer userId = JacksonUtil.parseInteger(body, "userId");
+        Integer cartId = JacksonUtil.parseInteger(body, "cartId");
+        Integer checked = JacksonUtil.parseInteger(body, "checked");
+        cartService.updateChecked(cartId,checked);
+        //查询商品总金额
+        double sumPrice = 0;
+        List<ShopCart> shopCarts = cartService.selectCartByUserId(userId);
+        for(ShopCart shopCart: shopCarts){
+            if (shopCart.getChecked() == 1){
+                sumPrice += (shopCart.getActivePrice().doubleValue())*shopCart.getNumber();
+            }
+        }
+       return ResponseUtil.success(sumPrice);
+    }
+
+
+
 }

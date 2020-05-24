@@ -2,8 +2,14 @@ var userInfo = localStorage.getItem("userInfo");
 userInfo = JSON.parse(userInfo);
 var allNumber = $("[name = 'number']").val();
 //选中商品个数
-var goodsCount = 0;
+var goodsCount = $(".amount-sum").find("[name='count']").text();
 allNumber = parseInt(allNumber);
+
+//总金额
+var goodsPriceAll = $("#allPriceAll").text();
+// 截取数字
+var goodsPriceAll = goodsPriceAll.replace(/[^0-9\\.\\^0-9]/ig,"");
+goodsPriceAll = parseFloat(goodsPriceAll);
 
 //减少
 function cut(_this){
@@ -136,17 +142,45 @@ function toSettleAccount() {
 
 //选中当前
 function getCurrentGoods(_this){
-    //th:onclick="'javascript:getCurrentGoods('+${shopcart.id}+')'"
     var check = $(_this).attr("checked");
+    var cartId = $(_this).attr("id");
+    console.log('总净额-》',goodsPriceAll);
     if (check == "checked") {
         goodsCount++;
         $(".amount-sum").find("[name='count']").text(goodsCount);
         $(_this).parent().parent().next().find("input[type='checkbox']").attr("checked",true);
+        //变成选中
+        var body = {"userId":userInfo.id,"cartId":cartId,"checked":1}
+        $.ajax({
+            url: "/fruitshop/cart/changeChecked",
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(body),
+            contentType: "application/json; charset=utf-8",
+            success: function (res) {
+                //总金额
+                $(".top-right").find("span").text("￥"+res.data.toFixed(2));
+            }
+        })
     } else {
         goodsCount--;
         $(".amount-sum").find("[name='count']").text(goodsCount);
         $("[name='items']").attr("checked",false);
         $(_this).parent().parent().next().find("input[type='checkbox']").attr("checked",false);
+
+        //变成未选中
+        var body = {"userId":userInfo.id,"cartId":cartId,"checked":0}
+        $.ajax({
+            url: "/fruitshop/cart/changeChecked",
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(body),
+            contentType: "application/json; charset=utf-8",
+            success: function (res) {
+                console.log('data',res)
+                //总金额
+                $(".top-right").find("span").text("￥"+res.data.toFixed(2));
+            }
+        })
     }
-    console.log("_this:::",_this)
 }

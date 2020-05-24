@@ -26,6 +26,10 @@ function searchGoods(){
 function homeToIndex() {
     window.location.href="/fruitshop/home/index";
 }
+//进入商品详情页面
+function toDetails(id){
+    window.location.href="/fruitshop/goods/detail?id="+id;
+}
 $(function () {
     var userInfo = JSON.parse(localStorage.getItem("userInfo"));
     if (userInfo != null){
@@ -37,19 +41,51 @@ $(function () {
         $("#name").text('昵 称：'+userInfo.nickname);
         $("#avatar").attr('src',userInfo.avatar);
     }
-
-    $.ajax({
-        url:"/fruitshop/goods/selectAll",
-        type:'GET',
-        data:{
-            page:1,
-            limit:20
-        },
-        success: function (result) {
-            var total = $("[name='total']").text();
-            console.log('ok->',total)
-        }
-    })
-    var total = $("[name = 'total']").val();
-    console.log('蔬菜-》',total)
 });
+
+var pageCurrent = $("[name='pageCurrent']").attr("value");
+var total = $("[name='total']").attr("value");
+var pageSum = $("[name='pageSum']").attr("value");
+$(function () {
+    console.log('total',total);
+    console.log('total',pageSum);
+    $("#recordCount").text(total)
+    _mypage(pageSum,pageCurrent);
+
+});
+
+function _mypage(totalPage,pageCurrent){
+    if(!pageCurrent){
+        pageCurrent=1;
+    }
+
+    var options = {
+        currentPage: pageCurrent ? pageCurrent : 0 ,
+        totalPages: totalPage ? totalPage : 0,
+        size:"normal",
+        alignment:"right",
+        /* pageUrl:function (type,page,current) {
+             //是每个分页码变成一个超链接
+             return '?page=' +page;
+         },*/
+        itemTexts: function (type, page) {
+            switch (type) {
+                case "first":
+                    return "第一页";
+                case "prev":
+                    return "<";
+                case "next":
+                    return ">";
+                case "last":
+                    return "最后页";
+                case "page":
+                    return  page;
+            }
+        },
+        onPageClicked: function (e, originalEvent, type, page) {
+            // var category_id = $("[name='category_id']").val();
+            location.href = "/fruitshop/home/index?page="+page;
+        }
+    }
+    $('#_page').bootstrapPaginator(options);
+}

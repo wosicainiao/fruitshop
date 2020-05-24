@@ -11,9 +11,14 @@
 		<link th:href="@{/AmazeUI-2.4.2/assets/css/admin.css}" rel="stylesheet" type="text/css" />
 		<link th:href="@{/basic/css/demo.css}" rel="stylesheet" type="text/css" />
 		<link th:href="@{/css/hmstyle.css}" rel="stylesheet" type="text/css" />
+		<link type="text/css" rel="stylesheet" th:href="@{/css/paginator/paginator.css}">
 
 		<script th:src="@{/AmazeUI-2.4.2/assets/js/jquery.min.js}"></script>
 		<script th:src="@{/AmazeUI-2.4.2/assets/js/amazeui.min.js}"></script>
+		<script type="text/javascript" th:src="@{/basic/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/basic/js/quick_links.js} "></script>
+		<script type="text/javascript"  th:src="@{/js/paginator/bootstrap.js}"></script>
+		<script type="text/javascript"  th:src="@{/js/paginator/bootstrap-paginator.js}"></script>
 
 	</head>
 
@@ -85,7 +90,7 @@
                       <!--轮播 -->
 						<div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
 							<ul class="am-slides">
-								<li class="banner1"><a href="introduction.html"><img th:src="@{/images/ad5.jpg}" /></a></li>
+								<li class="banner1"><a><img th:src="@{/images/ad5.jpg}" /></a></li>
 								<li class="banner2"><a><img th:src="@{/images/ad6.jpg}" /></a></li>
 								<li class="banner3"><a><img th:src="@{/images/ad7.jpg}" /></a></li>
 								<li class="banner4"><a><img th:src="@{/images/ad8.jpg}" /></a></li>
@@ -1051,98 +1056,53 @@
 					}
 				</script>
 			</div>
-		<input  name="total" type="hidden" th:name="${total}" th:value="${total}" style="width:30px;"/>
-		<div th:each="goods:${goodsList}">
-			<div >
-				aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-			</div>
-			<ul class="item-content clearfix" >
-				<div>
-					aaaaaaaaaaaaaaaaaaaa
-				</div>
-			</ul>
-		</div>
+
 			<div class="shopMainbg">
 				<div class="shopMain" id="shopmain">
 					<!--热门活动 -->
 					<div class="am-container">
-                     <div class="sale-mt">
-		                   <i></i>
-		                   <em class="sale-title">限时秒杀</em>
-		                   <div class="s-time" id="countdown">
-			                    <span class="hh">01</span>
-			                    <span class="mm">20</span>
-			                    <span class="ss">59</span>
-		                   </div>
-	                  </div>
-					  <div class="am-g am-g-fixed sale">
-						<div class="am-u-sm-3 sale-item">
-							<div class="s-img">
-								<a href="# "><img th:src="@{/images/sale3.jpg}" /></a>
-							</div>
-                           <div class="s-info">
-                           	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
-                           	   <div class="s-price">￥<b>9.90</b>
-                           	   	  <a class="s-buy" href="#">秒杀</a>
-                           	   </div>                          	  
-                           </div>								
-						</div>
-						
-						<div class="am-u-sm-3 sale-item">
-							<div class="s-img">
-								<a href="# "><img th:src="@{/images/sale2.jpg}" /></a>
-							</div>
-                           <div class="s-info">
-                           	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
-                           	   <div class="s-price">￥<b>9.90</b>
-                           	   	  <a class="s-buy" href="#">秒杀</a>
-                           	   </div>                          	  
-                           </div>								
-						</div>					
-						
-						<div class="am-u-sm-3 sale-item">
-							<div class="s-img">
-								<a href="# "><img th:src="@{/images/sale1.jpg}" /></a>
-							</div>
-                           <div class="s-info">
-                           	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
-                           	   <div class="s-price">￥<b>9.90</b>
-                           	   	  <a class="s-buy" href="#">秒杀</a>
-                           	   </div>                          	  
-                           </div>								
-						</div>
-						
-						<div class="am-u-sm-3 sale-item">
-							<div class="s-img">
-								<a href="# "><img th:src="@{/images/sale2.jpg}" /></a>
-							</div>
-                           <div class="s-info">
-                           	   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
-							   <a th:text="${total}"></a>
-							   <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
-                           	   <div class="s-price">￥<b>9.90</b>
-                           	   	  <a class="s-buy" href="#">秒杀</a>
-                           	   </div>
-                           </div>								
-						</div>
-						
-					  </div>
-                   </div>
-					<!--<input type="hidden" name="total" th:value="${total}"/>-->
-					<!--<div class="clear "></div>-->
-					<!--<div class="am-container" th:each="goods:${goodsList}">-->
+                     <!--<div class="sale-mt">-->
+		                   <!--<i></i>-->
+		                   <!--<em class="sale-title">限时秒杀</em>-->
+		                   <!--<div class="s-time" id="countdown">-->
+			                    <!--<span class="hh">01</span>-->
+			                    <!--<span class="mm">20</span>-->
+			                    <!--<span class="ss">59</span>-->
+		                   <!--</div>-->
+	                  <!--</div>-->
+					  <!--&lt;!&ndash;<div class="am-g am-g-fixed sale">&ndash;&gt;-->
 						<!--<div class="am-u-sm-3 sale-item">-->
 							<!--<div class="s-img">-->
-								<!--<a href="# "><img th:src="@{/images/sale2.jpg}" /></a>-->
+								<!--<a href="# "><img th:src="@{/images/sale3.jpg}" /></a>-->
 							<!--</div>-->
-							<!--<div class="s-info">-->
-								<!--<a th:text="${goods.goodsName}"></a>-->
-								<!--<div class="s-price">￥<b>9.90</b>-->
-									<!--<a class="s-buy" href="#">秒杀</a>-->
-								<!--</div>-->
-							<!--</div>-->
+                           <!--<div class="s-info">-->
+                           	   <!--<a href="#"><p class="s-title">ZEK 原味海苔</p></a>-->
+                           	   <!--<div class="s-price">￥<b>9.90</b>-->
+                           	   	  <!--<a class="s-buy" href="#">秒杀</a>-->
+                           	   <!--</div>                          	  -->
+                           <!--</div>								-->
 						<!--</div>-->
-					<!--</div>-->
+						<input type="hidden" name="pageCurrent" th:value="${pageCurrent}"/>
+						<input type="hidden" name="pageSum" th:value="${pageSum}"/>
+						<input type="hidden" name="total" th:value="${total}"/>
+						<div class="f1" th:each="goods:${goodsList}">
+							<div class="am-u-sm-3 sale-item">
+								<div  th:onclick="'javascript:toDetails('+${goods.id}+');'">
+									<a><img style="width: 200px" th:src="${goods.goodsPicture}" /></a>
+								</div>
+							   <div class="s-info">
+								   <p class="s-title" th:text="${goods.goodsName}"></p>
+								   <div class="s-price">￥<b th:text="${goods.activePrice}"></b>
+								   </div>
+							   </div>
+							</div>
+						</div>
+						<div align="right" style="cursor: pointer">
+							<div class="total_page"><font color="3399FF">总数：</font><font color="3399FF" id="recordCount"></font></div>
+							<div id="_page"></div>
+						</div>
+					  </div>
+                   </div>
 					<div class="clear "></div>
             <div class="f1">
 					<!--甜点-->
@@ -2724,9 +2684,7 @@
 		<!--<script>-->
 			<!--window.jQuery || document.write('<script th:src="basic/js/jquery.min.js "><\/script>');-->
 		<!--</script>-->
-        <script type="text/javascript" th:src="@{/basic/js/jquery.min.js}"></script>
-		<script type="text/javascript" th:src="@{/basic/js/quick_links.js} "></script>
 		<script type="text/javascript" th:src="@{/js/home.js}"></script>
-	</body>
 
+	</body>
 </html>

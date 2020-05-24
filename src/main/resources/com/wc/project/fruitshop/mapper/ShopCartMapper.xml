@@ -126,4 +126,26 @@
             </if>
         </trim>
     </insert>
+    <select id="selectCartsChecked" resultMap="BaseResultMap">
+        select
+          t1.*,t2.goods_brief as brief
+        from
+          shop_cart t1,shop_goods t2
+        where
+          t1.goods_id = t2.id
+        and
+          user_id = #{userId}
+        and
+          checked = 1
+    </select>
+
+    <update id="updateChecked" >
+        update
+          shop_cart
+        set
+          checked = #{checked}
+        where
+          id = #{cartId}
+    </update>
+
 </mapper>

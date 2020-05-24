@@ -18,4 +18,9 @@ public interface ShopCartMapper {
     int insertCart(ShopCart shopCart);
 
     Integer deleteCart(@Param("cartId") Integer cartId);
+
+    List<ShopCart> selectCartsChecked(@Param("userId") Integer userId);
+
+    int updateChecked(@Param("cartId") Integer cartId,@Param("checked") Integer checked);
+
 }

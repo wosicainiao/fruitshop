@@ -26,4 +26,6 @@ public class ShopCart {
     private LocalDateTime addTime;
     private LocalDateTime updateTime;
     private Byte deleted;
+
+    private String brief;
 }
