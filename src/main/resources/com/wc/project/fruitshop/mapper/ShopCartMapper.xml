@@ -137,6 +137,8 @@
           user_id = #{userId}
         and
           checked = 1
+        and
+          t1.deleted = 0
     </select>
 
     <update id="updateChecked" >
@@ -148,4 +150,22 @@
           id = #{cartId}
     </update>
 
+    <update id="deleteAllCart">
+        UPDATE
+          shop_cart
+        SET
+          deleted = 1
+        WHERE
+          user_id = #{userId}
+    </update>
+    <update id="deleteCheckedCart">
+        UPDATE
+          shop_cart
+        SET
+          deleted = 1
+        WHERE
+          user_id = #{userId}
+        and
+          checked = 1
+    </update>
 </mapper>

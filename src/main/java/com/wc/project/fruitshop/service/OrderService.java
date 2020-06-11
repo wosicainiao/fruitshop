@@ -1,9 +1,13 @@
 package com.wc.project.fruitshop.service;
 
+import com.wc.project.fruitshop.entity.ShopOrder;
+import com.wc.project.fruitshop.mapper.ShopOrderMapper;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -13,6 +17,9 @@ import java.util.Random;
  */
 @Service
 public class OrderService {
+
+    @Resource
+    private ShopOrderMapper orderMapper;
 
     public String generateOrderSn(Integer userId) {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -30,5 +37,9 @@ public class OrderService {
             sb.append(base.charAt(number));
         }
         return sb.toString();
+    }
+
+    public List<ShopOrder> selectOrderByUserId(Integer userId){
+        return orderMapper.selectOrderByUserId(userId);
     }
 }

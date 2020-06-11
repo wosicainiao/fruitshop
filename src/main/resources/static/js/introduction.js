@@ -3,11 +3,22 @@ userInfo = JSON.parse(userInfo);
 
 //进入购物车页面
 function toShopCart(){
-    window.location.href="/fruitshop/cart/shopcart?userId="+userInfo.id
+    if (userInfo == null){
+        alert("请先登录");
+        window.location.href="/fruitshop/user/login";
+        return
+    }else{
+        window.location.href="/fruitshop/cart/shopcart?userId="+userInfo.id
+    }
 }
 
 $(function () {
   $("#LikBasket").click(function () {
+      if (userInfo == null){
+          alert("请先登录");
+          window.location.href="/fruitshop/user/login";
+          return
+      }
       var userId = userInfo.id;
       var number = $("[name = 'number']").val();
       var goodsId =$("[name = 'goodsId']").val();
@@ -24,10 +35,9 @@ $(function () {
                   data: JSON.stringify(cart),
                   contentType: "application/json;charset=utf-8",
                   success: function (res) {
-                      console.log('res',res)
                       if (res.errorCode == 0){
-                          console.log('res',res)
-                          window.location.href="/fruitshop/cart/shopcart?userId="+userInfo.id
+                          alert("添加成功！")
+                          // window.location.href="/fruitshop/cart/shopcart?userId="+userInfo.id
                       }
                   }
               })

@@ -112,15 +112,46 @@ function add(_this){
 
 }
 
+//删除全部购物车
+function deleteAllCarts() {
+    if (userInfo == null || userInfo == undefined){
+        alert("请先登录");
+        window.location.href="/fruitshop/user/login";
+        return
+    }
+    var del = confirm("确认删除全部商品吗？");
+    if (!del){
+        return
+    }
+    var userId = userInfo.id;
+    var cart = {"userId":userId}
+    $.ajax({
+        url: "/fruitshop/cart/deleteAllCart",
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(cart),
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            window.location.href="/fruitshop/cart/shopcart?userId="+userInfo.id
+        }
+    })
+}
+
 //删除购物车
 function delCartByUser(){
     var cartId = $("[name= 'cartId']").val();
     console.log('cartId',cartId);
-    var userId = userInfo.id;
-    if (userId == null || userId == ''){
+
+    if (userInfo == null || userInfo == undefined){
         alert("请先登录");
         window.location.href="/fruitshop/user/login";
+        return
     }
+    var del = confirm("确认删除该商品吗？");
+    if (!del){
+        return
+    }
+    var userId = userInfo.id;
     var cart = {"userId":userId,"cartId":cartId}
     $.ajax({
         url: "/fruitshop/cart/deleteCart",

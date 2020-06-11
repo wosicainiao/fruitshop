@@ -2,6 +2,7 @@ package com.wc.project.fruitshop.entity;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -21,4 +22,5 @@ public class ShopUser {
     private String nickname;
     private String avatar;
     private LocalDateTime createTime;
+    private BigDecimal money;
 }

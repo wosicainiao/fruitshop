@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Mapper
 public interface ShopUserMapper  {
-    List<ShopUser> selectUserById(Integer id);
+    ShopUser selectUserById(Integer id);
     List<ShopUser> selectUserByUsername(String username);
     int insertUser(ShopUser shopUser);
 }

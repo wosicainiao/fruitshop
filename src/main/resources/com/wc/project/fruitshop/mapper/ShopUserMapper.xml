@@ -12,9 +12,10 @@
         <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
         <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="money" jdbcType="DECIMAL" property="money" />
     </resultMap>
     <sql id="Base_Column_List">
-        id,username,password,gender,birthday,mobile,nickname,avatar,create_time
+        id,username,password,gender,birthday,mobile,nickname,avatar,create_time,money
     </sql>
     <select id="selectUserById" resultType="com.wc.project.fruitshop.entity.ShopUser">
         SELECT
@@ -35,6 +36,7 @@
     <insert id="insertUser" parameterType="com.wc.project.fruitshop.entity.ShopUser">
         INSERT INTO
           shop_user
-        (username,password,gender,birthday,mobile,nickname,avatar,create_time)VALUES (username,password,gender,birthday,mobile,nickname,avatar,createTime)
+        (username,password,gender,birthday,mobile,nickname,avatar,create_time)VALUES
+         (username,password,gender,birthday,mobile,nickname,avatar,now())
     </insert>
 </mapper>

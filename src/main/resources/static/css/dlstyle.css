@@ -117,6 +117,3 @@ form,.am-cf,.partner{max-width:640px;margin:20px auto ;}
 .am-nav-tabs>li>a,.am-nav-tabs.am-nav-justify>li>a,.am-nav-tabs.am-nav-justify>.am-active>a,.am-nav-tabs>li.am-active>a, .am-nav-tabs>li.am-active>a:focus, .am-nav-tabs>li.am-active>a:hover {border: none; }
 	}
 
-.login-wc{
-	position: absolute;right:120px;top:15px ;padding:5px;font-size:14px ;
-}

@@ -1,5 +1,9 @@
 //注册
 function register(){
+    var check = $("#reader-me-d").val();
+d
+    console.log("check->>",check)
+    debugger
     $.ajax({
         url: "/fruitshop/user/registerUser",
         type: 'POST',

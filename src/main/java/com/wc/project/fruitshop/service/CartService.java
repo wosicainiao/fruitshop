@@ -32,6 +32,13 @@ public class CartService {
     public int deleteCart(Integer cartId){
         return cartMapper.deleteCart(cartId);
     }
+    public int deleteAllCart(Integer userId){
+        return cartMapper.deleteAllCart(userId);
+    }
+
+    public int deleteCheckedCart(Integer userId){
+        return cartMapper.deleteCheckedCart(userId);
+    }
 
     public List<ShopCart> selectCartsChecked(Integer userId){
         return cartMapper.selectCartsChecked(userId);

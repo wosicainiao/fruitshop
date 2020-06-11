@@ -1,10 +1,12 @@
 package com.wc.project.fruitshop.web;
 
 import com.wc.project.fruitshop.core.JacksonUtil;
+import com.wc.project.fruitshop.entity.ShopAddress;
 import com.wc.project.fruitshop.entity.ShopCart;
 import com.wc.project.fruitshop.entity.ShopGoods;
 import com.wc.project.fruitshop.service.CartService;
 import com.wc.project.fruitshop.service.GoodsService;
+import com.wc.project.fruitshop.service.ShopAddressService;
 import com.wc.project.fruitshop.utils.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +27,8 @@ public class CartController {
     private CartService cartService;
     @Autowired
     private GoodsService goodsService;
-
+    @Autowired
+    private ShopAddressService addressService;
     /**
      * 跳转到购物车界面
      * @return
@@ -106,6 +109,18 @@ public class CartController {
         }
     }
 
+    @PostMapping("/deleteAllCart")
+    @ResponseBody
+    public Object deleteAlCart(@RequestBody String body){
+        Integer userId = JacksonUtil.parseInteger(body,"userId");
+        int result = cartService.deleteAllCart(userId);
+        if(result != 0){
+            return ResponseUtil.fail();
+        }else {
+            return ResponseUtil.success();
+        }
+    }
+
     /**
      * 跳转结算
      * 选中的购物车商品
@@ -121,10 +136,15 @@ public class CartController {
                 sumPrice += (shopCart.getActivePrice().doubleValue())*shopCart.getNumber();
             }
         }
-        model.addAttribute("shopCarts",shopCarts);
         BigDecimal temp = new BigDecimal(sumPrice);
         temp = temp.setScale(2, BigDecimal.ROUND_HALF_UP);
+
+        //地址
+        List<ShopAddress> shopAddresses = addressService.selectByUserId(userId);
+        model.addAttribute("addressList",shopAddresses);
         model.addAttribute("sumPrice",temp);
+        model.addAttribute("shopCarts",shopCarts);
+
         return "pay";
     }
 

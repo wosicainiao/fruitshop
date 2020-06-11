@@ -38,4 +38,8 @@ public class UserService  {
         user.setNickname("新用户");
         return shopUserMapper.insertUser(user);
     }
+
+    public ShopUser selectUserById(Integer id){
+        return shopUserMapper.selectUserById(id);
+    }
 }

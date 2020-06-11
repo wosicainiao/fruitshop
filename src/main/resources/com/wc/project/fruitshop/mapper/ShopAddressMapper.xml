@@ -12,7 +12,7 @@
         <result property="addressDetail" column="address_detail" jdbcType="VARCHAR"/>
         <result property="areaCode" column="area_code" jdbcType="VARCHAR"/>
         <result property="tel" column="tel" jdbcType="VARCHAR"/>
-        <result property="isDefault" column="is_default" jdbcType="OTHER"/>
+        <result property="isDefault" column="is_default" jdbcType="BIT"/>
         <result property="addTime" column="add_time" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
         <result property="deleted" column="deleted" jdbcType="OTHER"/>
@@ -140,7 +140,7 @@
         delete from fruit_shop.shop_address where id = #{id}
     </delete>
 
-    <select id="selectByUserId" resultType="com.wc.project.fruitshop.entity.ShopAddress">
+    <select id="selectByUserId" resultMap="ShopAddressMap">
         select
           <include refid="Base_Column_List" />
         from
