@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wc.project.fruitshop.mapper.ShopOrderMapper">
+
+    <resultMap type="com.wc.project.fruitshop.entity.ShopOrder" id="ShopOrderMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="orderSn" column="order_sn" jdbcType="VARCHAR"/>
+        <result property="orderStatus" column="order_status" jdbcType="OTHER"/>
+        <result property="consignee" column="consignee" jdbcType="VARCHAR"/>
+        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="message" column="message" jdbcType="VARCHAR"/>
+        <result property="goodsPrice" column="goods_price" jdbcType="DECIMAL"/>
+        <result property="freightPrice" column="freight_price" jdbcType="DECIMAL"/>
+        <result property="orderPrice" column="order_price" jdbcType="DECIMAL"/>
+        <result property="actualPrice" column="actual_price" jdbcType="DECIMAL"/>
+        <result property="confirmTime" column="confirm_time" jdbcType="TIMESTAMP"/>
+        <result property="comments" column="comments" jdbcType="OTHER"/>
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
+        <result property="addTime" column="add_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="deleted" column="deleted" jdbcType="OTHER"/>
+        <result property="businessCode" column="business_code" jdbcType="VARCHAR"/>
+        <result property="payType" column="pay_type" jdbcType="VARCHAR"/>
+        <result property="orderImg" column="order_img" jdbcType="VARCHAR"/>
+        <result property="goodsName" column="goods_name" jdbcType="VARCHAR"/>
+        <result property="goodsNumber" column="goods_number" jdbcType="INTEGER"/>
+        <result property="arriveTime" column="arrive_time" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ShopOrderMap">
+        select
+          id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, order_price, actual_price, confirm_time, comments, end_time, add_time, update_time, deleted, business_code, pay_type, order_img
+        from fruit_shop.shop_order
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ShopOrderMap">
+        select
+          id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, order_price, actual_price, confirm_time, comments, end_time, add_time, update_time, deleted, business_code, pay_type, order_img
+        from fruit_shop.shop_order
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ShopOrderMap">
+        select
+          id, user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, order_price, actual_price, confirm_time, comments, end_time, add_time, update_time, deleted, business_code, pay_type, order_img
+        from fruit_shop.shop_order
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="orderSn != null and orderSn != ''">
+                and order_sn = #{orderSn}
+            </if>
+            <if test="orderStatus != null">
+                and order_status = #{orderStatus}
+            </if>
+            <if test="consignee != null and consignee != ''">
+                and consignee = #{consignee}
+            </if>
+            <if test="mobile != null and mobile != ''">
+                and mobile = #{mobile}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="message != null and message != ''">
+                and message = #{message}
+            </if>
+            <if test="goodsPrice != null">
+                and goods_price = #{goodsPrice}
+            </if>
+            <if test="freightPrice != null">
+                and freight_price = #{freightPrice}
+            </if>
+            <if test="orderPrice != null">
+                and order_price = #{orderPrice}
+            </if>
+            <if test="actualPrice != null">
+                and actual_price = #{actualPrice}
+            </if>
+            <if test="confirmTime != null">
+                and confirm_time = #{confirmTime}
+            </if>
+            <if test="comments != null">
+                and comments = #{comments}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="addTime != null">
+                and add_time = #{addTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="deleted != null">
+                and deleted = #{deleted}
+            </if>
+            <if test="businessCode != null and businessCode != ''">
+                and business_code = #{businessCode}
+            </if>
+            <if test="payType != null and payType != ''">
+                and pay_type = #{payType}
+            </if>
+            <if test="orderImg != null and orderImg != ''">
+                and order_img = #{orderImg}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into fruit_shop.shop_order(user_id, order_sn, order_status, consignee, mobile, address, message, goods_price, freight_price, order_price, actual_price, confirm_time, comments, end_time, add_time, update_time, deleted, business_code, pay_type,order_img,goods_name,goods_number,arrive_time)
+        values (#{userId}, #{orderSn}, #{orderStatus}, #{consignee}, #{mobile}, #{address}, #{message}, #{goodsPrice}, #{freightPrice}, #{orderPrice}, #{actualPrice}, #{confirmTime}, #{comments}, #{endTime}, #{addTime}, #{updateTime}, #{deleted}, #{businessCode}, #{payType}, #{orderImg}, #{goodsName}, #{goodsNumber},#{arriveTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update fruit_shop.shop_order
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="orderSn != null and orderSn != ''">
+                order_sn = #{orderSn},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus},
+            </if>
+            <if test="consignee != null and consignee != ''">
+                consignee = #{consignee},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="message != null and message != ''">
+                message = #{message},
+            </if>
+            <if test="goodsPrice != null">
+                goods_price = #{goodsPrice},
+            </if>
+            <if test="freightPrice != null">
+                freight_price = #{freightPrice},
+            </if>
+            <if test="orderPrice != null">
+                order_price = #{orderPrice},
+            </if>
+            <if test="actualPrice != null">
+                actual_price = #{actualPrice},
+            </if>
+            <if test="confirmTime != null">
+                confirm_time = #{confirmTime},
+            </if>
+            <if test="comments != null">
+                comments = #{comments},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="addTime != null">
+                add_time = #{addTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted},
+            </if>
+            <if test="businessCode != null and businessCode != ''">
+                business_code = #{businessCode},
+            </if>
+            <if test="payType != null and payType != ''">
+                pay_type = #{payType},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from fruit_shop.shop_order where id = #{id}
+    </delete>
+
+    <select id="selectOrderByUserId" resultMap="ShopOrderMap">
+        select * from shop_order where user_id = #{userId} and deleted = 0 order by add_time desc
+    </select>
+
+</mapper>
